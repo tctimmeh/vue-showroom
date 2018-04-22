@@ -1,11 +1,23 @@
 <template>
   <div class="props-editor">
-    <div v-if="options.component" class="controls">
+    <div v-if="options.props && Object.keys(options.props).length" class="prop-controls">
       <table class="fields">
         <tr class="prop-field" v-for="(value, name) in options.props" :key="name">
           <th class="field-label">{{ name }}:</th>
           <td class="field-control">
-            <input class="prop-control text-control" type="text" v-model="options.props[name]" />
+            <input v-if="typeof options.props[name] === 'string'" class="prop-control text-control" type="text"
+                   v-model="options.props[name]"
+            />
+
+            <input v-else-if="typeof options.props[name] === 'boolean'" class="prop-control boolean-control"
+                   type="checkbox" v-model="options.props[name]" />
+
+            <input v-else-if="typeof options.props[name] === 'number'" class="prop-control number-control"
+                   type="number" v-model="options.props[name]" />
+
+            <input v-else disabled class="prop-control disabled-control" type="text"
+                   :value="JSON.stringify(options.props[name])"
+            />
           </td>
         </tr>
       </table>
@@ -28,7 +40,7 @@ export default {
 
 <style scoped lang="scss">
   .no-props {
-    color: #aaa;
+    color: #999;
   }
 
   .fields, .field-control {
@@ -47,9 +59,10 @@ export default {
     padding-bottom: 0.5rem;
   }
 
-  .text-control {
+  .text-control, .number-control, .disabled-control {
+    width: 100%;
     font-size: 1rem;
-    padding: 0.4rem;
+    padding: 0.5rem;
     border: 1px solid #aaa;
   }
 </style>
