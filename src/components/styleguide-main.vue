@@ -67,6 +67,7 @@ export default {
 
   .component-menu {
     padding: 1rem;
+    box-shadow: 0 0 8px 0 #777;
   }
 
   .component-editor {

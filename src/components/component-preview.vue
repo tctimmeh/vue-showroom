@@ -1,7 +1,7 @@
 <template>
   <div class="component-preview">
     <div v-if="component" ref="preview">
-      <component :is="component" />
+      <component :is="component" v-bind="options.component.props" />
     </div>
   </div>
 </template>
@@ -15,6 +15,10 @@ export default {
       required: false,
       default: undefined
     },
+    options: {
+      type: Object,
+      required: true,
+    }
   },
 }
 </script>

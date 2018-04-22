@@ -1,13 +1,13 @@
 <template>
   <div class="component-editor">
-    <component-preview class="preview" :component="component" />
-    <component-controls class="controls" :component="component" />
+    <component-preview class="preview" :component="component" :options="options" />
+    <component-controls class="controls" :options="options" />
   </div>
 </template>
 
 <script>
 import ComponentPreview from './component-preview'
-import ComponentControls from './component-controls'
+import ComponentControls from './controls/component-controls'
 
 export default {
   name: 'component-editor',
@@ -27,6 +27,31 @@ export default {
       default: undefined
     }
   },
+  data() {
+    return {
+      options: {}
+    }
+  },
+  mounted() {
+    this.reset()
+  },
+  watch: {
+    component() {
+      this.reset()
+    },
+    example() {
+      this.reset()
+    }
+  },
+  methods: {
+    reset() {
+      this.options = {
+        component: {
+          props: this.example ? this.example.props || {} : {}
+        }
+      }
+    }
+  }
 }
 </script>
 
@@ -42,5 +67,9 @@ export default {
 
   .preview {
     flex-grow: 1;
+  }
+
+  .controls {
+    border-top: 1px solid #ccc;
   }
 </style>
