@@ -1,30 +1,46 @@
 <template>
   <div class="component-editor">
-    <div class="pane component-preview">
-      <h6 v-if="component" class="title is-6">{{ component.name }}</h6>
-    </div>
-
-    <div class="pane component-controls">
-      <h6 class="title is-6">Controls</h6>
-    </div>
+    <component-preview class="preview" :component="component" />
+    <component-controls class="controls" :component="component" />
   </div>
 </template>
 
 <script>
+import ComponentPreview from './component-preview'
+import ComponentControls from './component-controls'
+
 export default {
   name: 'component-editor',
+  components: {
+    ComponentPreview,
+    ComponentControls
+  },
   props: {
     component: {
       type: Object,
       required: false,
       default: undefined,
+    },
+    example: {
+      type: Object,
+      required: false,
+      default: undefined
     }
-  }
+  },
 }
 </script>
 
 <style scoped lang="scss">
-  .pane {
+  .component-editor {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .preview, .controls {
     padding: 1rem;
+  }
+
+  .preview {
+    flex-grow: 1;
   }
 </style>

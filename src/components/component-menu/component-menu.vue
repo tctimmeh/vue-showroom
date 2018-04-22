@@ -65,5 +65,6 @@ function sortComponents(components) {
   .component-menu {
     background-color: white;
     overflow-y: auto;
+    min-width: 18rem;
   }
 </style>

@@ -4,7 +4,7 @@
                     @select="selectComponent"
     />
 
-    <component-editor class="component-editor" :component="component" />
+    <component-editor class="component-editor" :component="component" :example="example" />
   </div>
 </template>
 
@@ -26,7 +26,8 @@ export default {
   },
   data() {
     return {
-      component: undefined
+      component: undefined,
+      example: undefined,
     }
   },
   mounted() {
@@ -34,11 +35,14 @@ export default {
     if (categoryName && categoryName[0] === '#') {
       categoryName = categoryName.slice(1)
     }
-    this.component = this.getComponentByName(categoryName, componentName)
+    const component = this.getComponentByName(categoryName, componentName)
+    this.component = component
+    this.example = component && component.styleguide && component.styleguide.examples ? component.styleguide.examples[0] : {}
   },
   methods: {
     selectComponent(component) {
       this.component = component
+      this.example = component.styleguide && component.styleguide.examples ? component.styleguide.examples[0] : {}
 
       const category = component.styleguide && component.styleguide.category ? component.styleguide.category : ''
       window.location.hash = `${category}|${component.name}`
