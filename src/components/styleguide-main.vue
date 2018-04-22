@@ -1,7 +1,10 @@
 <template>
   <div class="styleguide-main">
-    <component-menu class="component-menu" :components="components" />
-    <component-editor class="component-editor" />
+    <component-menu class="component-menu" :components="components" :selectedComponent="component"
+                    @select="selectComponent"
+    />
+
+    <component-editor class="component-editor" :component="component" />
   </div>
 </template>
 
@@ -21,6 +24,16 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      component: undefined
+    }
+  },
+  methods: {
+    selectComponent(component) {
+      this.component = component
+    }
+  }
 }
 </script>
 

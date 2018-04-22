@@ -4,11 +4,11 @@
 
     <menu-category class="subcategory" v-for="(subCategory, subCategoryName) in category.categories"
                    :name="subCategoryName" :category="subCategory" :key="subCategoryName" :depth="depth + 1"
-                   :style="inlineStyle" @select="select"
+                   :selectedComponent="selectedComponent" :style="inlineStyle" @select="select"
     />
 
-    <div class="component-link" v-for="component in category.components" :key="component.name" :style="inlineStyle"
-         @click="select(component)"
+    <div class="component-link" :class="{selected: component === selectedComponent}"
+         v-for="component in category.components" :key="component.name" :style="inlineStyle" @click="select(component)"
     >
       {{ component.name }}
     </div>
@@ -22,6 +22,11 @@ export default {
     category: {
       type: Object,
       required: true,
+    },
+    selectedComponent: {
+      type: Object,
+      required: false,
+      default: undefined,
     },
     depth: {
       type: Number,
@@ -57,9 +62,15 @@ export default {
     color: #333;
     cursor: pointer;
     padding: 0.5rem;
+    border-radius: 0.25rem;
 
     &:hover {
       background-color: #eee;
+    }
+
+    &.selected {
+      background-color: #8bd;
+      color: white;
     }
   }
 </style>

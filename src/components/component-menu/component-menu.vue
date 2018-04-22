@@ -1,7 +1,7 @@
 <template>
   <div class="component-menu">
     <menu-category class="menu-category" v-for="category in categories" :key="category.name"
-                   :category="category" @select="select"
+                   :category="category" @select="select" :selectedComponent="selectedComponent"
     />
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     components: {
       type: Array,
       required: true,
+    },
+    selectedComponent: {
+      type: Object,
+      required: false,
+      default: undefined,
     }
   },
   computed: {
