@@ -29,9 +29,28 @@ export default {
       component: undefined
     }
   },
+  mounted() {
+    let [categoryName, componentName] = window.location.hash.split('|')
+    if (categoryName && categoryName[0] === '#') {
+      categoryName = categoryName.slice(1)
+    }
+    this.component = this.getComponentByName(categoryName, componentName)
+  },
   methods: {
     selectComponent(component) {
       this.component = component
+
+      const category = component.styleguide && component.styleguide.category ? component.styleguide.category : ''
+      window.location.hash = `${category}|${component.name}`
+    },
+
+    getComponentByName(categoryName, componentName) {
+      for (const component of this.components) {
+        const category = component.styleguide && component.styleguide.category ? component.styleguide.category : ''
+        if ((category === categoryName) && (componentName === component.name)) {
+          return component
+        }
+      }
     }
   }
 }
