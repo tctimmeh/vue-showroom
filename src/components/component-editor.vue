@@ -61,7 +61,7 @@ export default {
     flex-direction: column;
   }
 
-  .preview, .controls {
+  .preview {
     padding: 1rem;
   }
 
