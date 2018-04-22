@@ -45,10 +45,23 @@ export default {
   },
   methods: {
     reset() {
-      this.options = {
-        component: {
-          props: this.example ? this.example.props || {} : {}
+      if (!this.component) {
+        this.options = {}
+        return
+      }
+
+      const props = {}
+      for (const propName in this.component.props) {
+        if (!this.component.props.hasOwnProperty(propName)) {
+          continue
         }
+        props[propName] = this.example.props[propName] || this.component.props[propName].default || undefined
+      }
+
+      this.options = {
+        component: this.component,
+        example: this.example || {},
+        props,
       }
     }
   }

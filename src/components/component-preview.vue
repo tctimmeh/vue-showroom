@@ -1,7 +1,7 @@
 <template>
   <div class="component-preview">
     <div v-if="component" ref="preview">
-      <component :is="component" v-bind="options.component.props" />
+      <component :is="component" v-bind="options.props" />
     </div>
   </div>
 </template>
