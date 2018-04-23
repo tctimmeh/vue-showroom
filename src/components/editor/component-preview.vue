@@ -4,7 +4,9 @@
       <button class="trigger-button" @click="triggerPreview">Trigger</button>
     </div>
     <div v-else-if="component" ref="preview" v-on="domEventHandlers">
-      <component :is="component" v-bind="options.props" v-on="vueEventHandlers" />
+      <component :is="component" v-bind="options.props" v-on="vueEventHandlers">
+        <div v-for="(slotContent, slot) in previewSlots" :slot="slot" v-html="slotContent" />
+      </component>
     </div>
   </div>
 </template>
@@ -34,7 +36,13 @@ export default {
         return undefined
       }
       return this.component.styleguide.trigger
+    },
 
+    previewSlots() {
+      if (!this.options.example || !this.options.example.slots) {
+        return {}
+      }
+      return this.options.example.slots
     },
 
     domEventHandlers() {
