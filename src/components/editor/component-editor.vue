@@ -29,7 +29,14 @@ export default {
   },
   data() {
     return {
-      options: {},
+      options: {
+        component: undefined,
+        example: {},
+        props: {},
+        preview: {
+          backgroundColor: 'inherit'
+        }
+      },
       events: [],
     }
   },
@@ -48,7 +55,9 @@ export default {
     reset() {
       this.events = []
       if (!this.component) {
-        this.options = {}
+        this.options.component = undefined
+        this.options.example = {}
+        this.options.props = {}
         return
       }
 
@@ -62,11 +71,9 @@ export default {
           || undefined
       }
 
-      this.options = {
-        component: this.component,
-        example: this.example || {},
-        props,
-      }
+      this.options.component = this.component
+      this.options.example = this.example || {}
+      this.options.props = props
     },
 
     captureEvent(event) {

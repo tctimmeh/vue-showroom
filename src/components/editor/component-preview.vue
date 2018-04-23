@@ -1,5 +1,5 @@
 <template>
-  <div class="component-preview">
+  <div class="component-preview" :style="{backgroundColor: options.preview.backgroundColor}">
     <div v-if="component" ref="preview" v-on="domEventHandlers">
       <component :is="component" v-bind="options.props" v-on="vueEventHandlers" />
     </div>
