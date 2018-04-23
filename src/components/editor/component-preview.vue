@@ -5,7 +5,7 @@
     </div>
     <div v-else-if="component" ref="preview" v-on="domEventHandlers">
       <component :is="component" v-bind="options.props" v-on="vueEventHandlers">
-        <div v-for="(slotContent, slot) in previewSlots" :slot="slot" v-html="slotContent" />
+        <div v-for="[slot, slotContent] in previewSlots" :slot="slot" v-html="slotContent" />
       </component>
     </div>
   </div>
@@ -40,9 +40,17 @@ export default {
 
     previewSlots() {
       if (!this.options.example || !this.options.example.slots) {
-        return {}
+        return []
       }
-      return this.options.example.slots
+
+      return Object.entries(this.options.example.slots).reduce((previous, current) => {
+        const [slot, slotContent] = current
+        if (typeof slotContent === 'string') {
+          previous.push(current)
+          return previous
+        }
+        return previous.concat(slotContent.map(content => [slot, content]))
+      }, [])
     },
 
     domEventHandlers() {

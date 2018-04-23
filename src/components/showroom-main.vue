@@ -1,5 +1,5 @@
 <template>
-  <div class="styleguide-main">
+  <div class="showroom-main">
     <component-menu class="component-menu" :components="components" :selectedComponent="component"
                     @select="selectComponent"
     />
@@ -17,7 +17,7 @@ const defaultExample = {
 }
 
 export default {
-  name: 'styleguide-main',
+  name: 'showroom-main',
   components: {
     ComponentMenu,
     ComponentEditor,
@@ -51,8 +51,16 @@ export default {
         : {}
       this.example = Object.assign({}, defaultExample, example)
 
-      const category = component.styleguide && component.styleguide.category ? component.styleguide.category : ''
-      window.location.hash = `${category}|${component.name}`
+      const category = component && component.styleguide && component.styleguide.category
+        ? component.styleguide.category
+        : ''
+
+      if (component) {
+        window.location.hash = `${category}|${component.name}`
+      }
+      else {
+        window.location.hash = ''
+      }
     },
 
     getComponentByName(categoryName, componentName) {
@@ -68,7 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .styleguide-main {
+  .showroom-main {
     display: flex;
   }
 
