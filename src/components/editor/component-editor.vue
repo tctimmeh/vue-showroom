@@ -1,19 +1,19 @@
 <template>
   <div class="component-editor">
-    <component-preview class="preview" :component="component" :options="options" />
-    <component-controls class="controls" :options="options" />
+    <component-preview class="preview" :component="component" :options="options" @eventTriggered="captureEvent"/>
+    <component-panels class="panels" :options="options" :events="events"/>
   </div>
 </template>
 
 <script>
 import ComponentPreview from './component-preview'
-import ComponentControls from './controls/component-controls'
+import ComponentPanels from './component-panels'
 
 export default {
   name: 'component-editor',
   components: {
     ComponentPreview,
-    ComponentControls
+    ComponentPanels
   },
   props: {
     component: {
@@ -29,7 +29,8 @@ export default {
   },
   data() {
     return {
-      options: {}
+      options: {},
+      events: [],
     }
   },
   mounted() {
@@ -45,6 +46,7 @@ export default {
   },
   methods: {
     reset() {
+      this.events = []
       if (!this.component) {
         this.options = {}
         return
@@ -55,7 +57,9 @@ export default {
         if (!this.component.props.hasOwnProperty(propName)) {
           continue
         }
-        props[propName] = this.example.props[propName] || this.component.props[propName].default || undefined
+        props[propName] = this.example.props[propName]
+          || this.component.props[propName].default
+          || undefined
       }
 
       this.options = {
@@ -63,6 +67,10 @@ export default {
         example: this.example || {},
         props,
       }
+    },
+
+    captureEvent(event) {
+      this.events.push(event)
     }
   }
 }
@@ -82,7 +90,7 @@ export default {
     flex-grow: 1;
   }
 
-  .controls {
+  .panels {
     border-top: 1px solid #ccc;
   }
 </style>

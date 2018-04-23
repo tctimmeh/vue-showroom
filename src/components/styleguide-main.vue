@@ -9,8 +9,12 @@
 </template>
 
 <script>
-import ComponentMenu from './component-menu/component-menu'
-import ComponentEditor from './component-editor'
+import ComponentMenu from './menu/component-menu'
+import ComponentEditor from './editor/component-editor'
+
+const defaultExample = {
+  props: {}
+}
 
 export default {
   name: 'styleguide-main',
@@ -36,13 +40,16 @@ export default {
       categoryName = categoryName.slice(1)
     }
     const component = this.getComponentByName(categoryName, componentName)
-    this.component = component
-    this.example = component && component.styleguide && component.styleguide.examples ? component.styleguide.examples[0] : {}
+    this.selectComponent(component)
   },
   methods: {
     selectComponent(component) {
       this.component = component
-      this.example = component.styleguide && component.styleguide.examples ? component.styleguide.examples[0] : {}
+
+      const example = component && component.styleguide && component.styleguide.examples
+        ? component.styleguide.examples[0]
+        : {}
+      this.example = Object.assign({}, defaultExample, example)
 
       const category = component.styleguide && component.styleguide.category ? component.styleguide.category : ''
       window.location.hash = `${category}|${component.name}`

@@ -1,5 +1,5 @@
 <template>
-  <div class="component-controls">
+  <div class="component-panels">
     <div class="panel-links">
       <span class="panel-link" v-for="(panel, key) in panels" :key="key" :class="{'selected': selectedPanel === key}"
             @click="selectedPanel = key"
@@ -7,25 +7,29 @@
         {{ panel.title }}
       </span>
     </div>
-    <div class="panels">
+    <div class="panel-container">
       <component v-for="(panel, key) in panels" :key="key" :is="panel.panel" v-if="selectedPanel === key"
-                 :options="options"
+                 :options="options" :events="events"
       />
     </div>
   </div>
 </template>
 
 <script>
-import PropsEditor from './props-editor'
-import PreviewOptions from './preview-options'
+import PropsPanel from './panels/props-panel'
+import SettingsPanel from './panels/settings-panel'
+import EventsPanel from './panels/events-panel'
 
 export default {
-  name: 'component-controls',
-  components: {PropsEditor},
+  name: 'component-panels',
   props: {
     options: {
       type: Object,
       required: true,
+    },
+    events: {
+      type: Array,
+      required: true
     }
   },
   data() {
@@ -37,11 +41,15 @@ export default {
     this.panels = {
       props: {
         title: 'Props',
-        panel: PropsEditor,
+        panel: PropsPanel,
+      },
+      events: {
+        title: 'Events',
+        panel: EventsPanel,
       },
       preview: {
-        title: 'Preview',
-        panel: PreviewOptions,
+        title: 'Settings',
+        panel: SettingsPanel,
       }
     }
   }
@@ -49,13 +57,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .component-controls {
+  .component-panels {
     background-color: white;
     min-height: 10rem;
+    max-height: 25rem;
+    display: flex;
+    flex-direction: column;
   }
 
   .panel-links {
     margin: 0 1rem;
+    user-select: none;
   }
 
   .panel-link {
@@ -73,7 +85,8 @@ export default {
     }
   }
 
-  .panels {
+  .panel-container {
     padding: 1rem;
+    overflow-y: auto;
   }
 </style>
