@@ -1,6 +1,9 @@
 <template>
   <div class="component-preview" :style="{backgroundColor: options.preview.backgroundColor}">
-    <div v-if="component" ref="preview" v-on="domEventHandlers">
+    <div v-if="triggerOptions && !previewVisible" class="component-trigger">
+      <button class="trigger-button" @click="triggerPreview">Trigger</button>
+    </div>
+    <div v-else-if="component" ref="preview" v-on="domEventHandlers">
       <component :is="component" v-bind="options.props" v-on="vueEventHandlers" />
     </div>
   </div>
@@ -20,14 +23,27 @@ export default {
       required: true,
     }
   },
+  data() {
+    return {
+      previewVisible: false
+    }
+  },
   computed: {
+    triggerOptions() {
+      if (!this.component || !this.component.styleguide || !this.component.styleguide.trigger) {
+        return undefined
+      }
+      return this.component.styleguide.trigger
+
+    },
+
     domEventHandlers() {
       if (!this.component) {
         return {}
       }
       const domEventNames = (this.component.styleguide && this.component.styleguide.events
         && this.component.styleguide.events.dom) ? this.component.styleguide.events.dom : []
-      return this.getEventHandlers(domEventNames, this.domHandler)
+      return this.getEventHandlers(domEventNames, this.eventHandler)
     },
 
     vueEventHandlers() {
@@ -36,7 +52,7 @@ export default {
       }
       const vueEventNames = (this.component.styleguide && this.component.styleguide.events
         && this.component.styleguide.events.vue) ? this.component.styleguide.events.vue : []
-      return this.getEventHandlers(vueEventNames, this.domHandler)
+      return this.getEventHandlers(vueEventNames, this.eventHandler)
     }
   },
   methods: {
@@ -47,16 +63,26 @@ export default {
       }, {})
     },
 
-    domHandler(eventName, event) {
+    eventHandler(eventName, event) {
+      if (this.triggerOptions && eventName === this.triggerOptions.cancelEvent) {
+        this.previewVisible = false
+      }
       this.$emit('eventTriggered', {name: eventName, data: event, time: new Date()})
     },
 
-    vueHandler(event) {
-      this.$emit('eventTriggered', {name: 'cancel', data: event, time: new Date()})
+    triggerPreview() {
+      this.previewVisible = true
     }
   }
 }
 </script>
 
-<!--<style scoped lang="scss">-->
-<!--</style>-->
+<style scoped lang="scss">
+  .trigger-button {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+</style>
