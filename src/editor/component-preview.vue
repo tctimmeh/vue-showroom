@@ -5,7 +5,7 @@
     </div>
     <div v-else-if="component" ref="preview" v-on="domEventHandlers">
       <component :is="component" v-bind="options.props" v-on="vueEventHandlers">
-        <div v-for="[slot, slotContent] in previewSlots" :slot="slot" v-html="slotContent" />
+        <div v-for="([slot, slotContent], index) in previewSlots" :key="index" :slot="slot" v-html="slotContent" />
       </component>
     </div>
   </div>

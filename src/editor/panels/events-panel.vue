@@ -1,7 +1,7 @@
 <template>
   <div class="event-log">
     <ul class="event-list">
-      <li v-for="event in reversedEvents" class="event-description">
+      <li v-for="(event, index) in reversedEvents" :key="index" class="event-description">
         <button class="inspect-button" title="Inspect in console" @click="inspect(event)">&#x1f441;</button>
 
         <span class="event-time">{{ formatDate(event.time) }}</span>

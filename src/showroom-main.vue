@@ -1,6 +1,6 @@
 <template>
   <div class="showroom-main">
-    <component-menu class="component-menu" :components="components" :selectedComponent="component"
+    <component-menu class="component-menu" :components="components" :selected-component="component"
                     @select="selectComponent"
     />
 
@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import ComponentMenu from './menu/component-menu'
-import ComponentEditor from './editor/component-editor'
+import ComponentMenu from './menu/component-menu.vue'
+import ComponentEditor from './editor/component-editor.vue'
 
 const defaultExample = {
   props: {}
@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted() {
-    let [categoryName, componentName] = window.location.hash.split('|')
+    let [categoryName, componentName] = window.location.hash.split('|') // eslint-disable-line prefer-const
     if (categoryName && categoryName[0] === '#') {
       categoryName = categoryName.slice(1)
     }
@@ -70,6 +70,7 @@ export default {
           return component
         }
       }
+      return undefined
     }
   }
 }

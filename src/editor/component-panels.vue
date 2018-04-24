@@ -16,9 +16,9 @@
 </template>
 
 <script>
-import PropsPanel from './panels/props-panel'
-import SettingsPanel from './panels/settings-panel'
-import EventsPanel from './panels/events-panel'
+import PropsPanel from './panels/props-panel.vue'
+import SettingsPanel from './panels/settings-panel.vue'
+import EventsPanel from './panels/events-panel.vue'
 
 export default {
   name: 'component-panels',

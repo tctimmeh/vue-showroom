@@ -7,17 +7,17 @@
           <td class="field-control">
             <input v-if="typeof options.props[name] === 'string'" class="prop-control text-control" type="text"
                    v-model="options.props[name]"
-            />
+            >
 
             <input v-else-if="typeof options.props[name] === 'boolean'" class="prop-control boolean-control"
-                   type="checkbox" v-model="options.props[name]" />
+                   type="checkbox" v-model="options.props[name]" >
 
             <input v-else-if="typeof options.props[name] === 'number'" class="prop-control number-control"
-                   type="number" v-model="options.props[name]" />
+                   type="number" v-model="options.props[name]" >
 
             <input v-else disabled class="prop-control disabled-control" type="text"
                    :value="JSON.stringify(options.props[name])"
-            />
+            >
           </td>
         </tr>
       </table>
@@ -32,8 +32,10 @@
 export default {
   name: 'props-editor',
   props: {
-    options: Object,
-    required: true,
+    options: {
+      type: Object,
+      required: true,
+    },
   },
 }
 </script>

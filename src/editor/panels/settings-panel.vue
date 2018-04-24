@@ -2,7 +2,7 @@
   <div>
     <div class="background-color-setting">
       <strong>Background Color:</strong>
-      <input class="background-color-input" type="color" v-model="options.preview.backgroundColor"/>
+      <input class="background-color-input" type="color" v-model="options.preview.backgroundColor">
       <button class="background-clear-button" @click="clearBackgroundColor">Clear</button>
     </div>
   </div>
@@ -12,8 +12,10 @@
 export default {
   name: 'preview-options',
   props: {
-    options: Object,
-    required: true,
+    options: {
+      type: Object,
+      required: true,
+    },
   },
   methods: {
     clearBackgroundColor() {

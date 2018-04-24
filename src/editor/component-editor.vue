@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ComponentPreview from './component-preview'
-import ComponentPanels from './component-panels'
+import ComponentPreview from './component-preview.vue'
+import ComponentPanels from './component-panels.vue'
 
 export default {
   name: 'component-editor',
@@ -40,9 +40,6 @@ export default {
       events: [],
     }
   },
-  mounted() {
-    this.reset()
-  },
   watch: {
     component() {
       this.reset()
@@ -50,6 +47,9 @@ export default {
     example() {
       this.reset()
     }
+  },
+  mounted() {
+    this.reset()
   },
   methods: {
     reset() {

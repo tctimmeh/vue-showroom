@@ -1,9 +1,23 @@
 {
-  "name": "vue-styleguide",
+  "name": "vue-showroom",
   "version": "0.1.0",
-  "description": "Living component styleguide that embeds directly into your application",
+  "description": "Component styleguide that embeds directly into your application",
   "license": "MIT",
+  "scripts": {
+    "build": "bili",
+    "lint": "eslint --ext .vue --ignore-path .gitignore --report-unused-disable-directives ."
+  },
   "peerDependencies": {
     "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "bili": "^3.1.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-vue": "^4.5.0",
+    "rollup-plugin-vue": "^3.0.0",
+    "vue": "^2.5.16",
+    "vue-template-compiler": "^2.5.16"
   }
 }

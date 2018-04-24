@@ -4,7 +4,7 @@
 
     <menu-category class="subcategory" v-for="(subCategory, subCategoryName) in category.categories"
                    :name="subCategoryName" :category="subCategory" :key="subCategoryName" :depth="depth + 1"
-                   :selectedComponent="selectedComponent" :style="inlineStyle" @select="select"
+                   :selected-component="selectedComponent" :style="inlineStyle" @select="select"
     />
 
     <div class="component-link" :class="{selected: component === selectedComponent}"
