@@ -18,6 +18,7 @@
     "eslint-plugin-vue": "^4.5.0",
     "rollup-plugin-vue": "^3.0.0",
     "vue": "^2.5.16",
+    "vue-cli": "^2.9.3",
     "vue-template-compiler": "^2.5.16"
   }
 }
