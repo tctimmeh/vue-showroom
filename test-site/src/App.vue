@@ -1,16 +1,10 @@
 <template>
-  <div id="app">
-    <showroom-main id="showroom" :components="showroomComponents" />
-  </div>
+  <showroom-main id="showroom" :components="components" />
 </template>
 
 <script>
 import ShowroomMain from '../../dist/vue-showroom.min'
-
-import SimpleButton from './components/button.vue'
-import CustomButton from './components/custom-button.vue'
-import PropsDemo from './components/props-demo.vue'
-import SlotsDemo from './components/slots-demo.vue'
+import allComponents from './showroom-components'
 
 export default {
   name: 'App',
@@ -18,12 +12,7 @@ export default {
     ShowroomMain
   },
   created() {
-    this.showroomComponents = [
-      SimpleButton,
-      CustomButton,
-      PropsDemo,
-      SlotsDemo
-    ]
+    this.components = allComponents
   }
 }
 </script>
@@ -31,7 +20,7 @@ export default {
 <style>
   @import '../../dist/vue-showroom.min.css';
 
-  html, body, #app, #showroom {
+  html, body, #showroom {
     height: 100%;
     width: 100%;
     margin: 0;

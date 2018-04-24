@@ -71,6 +71,11 @@ export default {
       return this.getEventHandlers(vueEventNames, this.eventHandler)
     }
   },
+  watch: {
+    component() {
+      this.previewVisible = false
+    }
+  },
   methods: {
     getEventHandlers(eventNames, handlerFunc) {
       return eventNames.reduce((accumulator, name) => {
