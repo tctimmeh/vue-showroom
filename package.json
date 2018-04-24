@@ -1,8 +1,9 @@
 {
   "name": "vue-showroom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Component styleguide that embeds directly into your application",
   "license": "MIT",
+  "main": "dist/vue-showroom.js",
   "contributors": [
     {
       "name": "Tim Court <tctimmeh@gmail.com>"
