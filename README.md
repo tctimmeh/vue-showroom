@@ -109,3 +109,9 @@ _Example_: `examples: [ { slots: { title: 'A <em>good</em> title', button: ['a',
 
 The HTML to render in each slot. The values given here are passed as `v-html` to each slot, so you can embed HTML here.
 If a list of values is given for a slot name then that slot will be rendered once for each value.
+
+## Developing Showroom
+
+- Run `yarn build` to build the releasable package
+- After building, go into the `test-site` directory and run `yarn dev` to launch an example site that demonstrates 
+  Showroom's features

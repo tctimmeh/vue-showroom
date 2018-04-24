@@ -1,11 +1,17 @@
 {
   "name": "vue-showroom",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Component styleguide that embeds directly into your application",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Tim Court <tctimmeh@gmail.com>"
+    }
+  ],
+  "repository": "https://github.com/tctimmeh/vue-showroom",
   "scripts": {
     "build": "bili",
-    "lint": "eslint --ext .vue --ignore-path .gitignore --report-unused-disable-directives ."
+    "lint": "eslint --ext .vue --ignore-path .gitignore --ignore-pattern test-site/ --report-unused-disable-directives ."
   },
   "peerDependencies": {
     "vue": "^2.5.16"
