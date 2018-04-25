@@ -32,14 +32,16 @@ Here is an example page that displays Showroom:
     }
     </script>
 
-    <style>
-      @import '../../dist/vue-showroom.min.css';
+    <style lang="scss">
+      @import '~vue-showoom/dist/vue-showroom.min';
       #showroom {
         height: 100%;
         width: 100%;
         margin: 0;
       }
     </style>
+
+It is important to import the styles globally (not with `scoped`).
 
 Note that you must provide an array of every component that you want to appear in Showroom. Consider maintaining this
 list in a dedicated file (e.g. `showroom-components.js`).
