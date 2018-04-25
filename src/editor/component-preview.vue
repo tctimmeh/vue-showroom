@@ -1,7 +1,7 @@
 <template>
-  <div class="component-preview" :style="{backgroundColor: options.preview.backgroundColor}">
-    <div v-if="triggerOptions && !previewVisible" class="component-trigger">
-      <button class="trigger-button" @click="triggerPreview">Trigger</button>
+  <div class="vueshowroom-component-preview" :style="{backgroundColor: options.preview.backgroundColor}">
+    <div v-if="triggerOptions && !previewVisible" class="vueshowroom-component-preview__component-trigger">
+      <button class="vueshowroom-component-preview__trigger-button" @click="triggerPreview">Trigger</button>
     </div>
     <div v-else-if="component" ref="preview" v-on="domEventHandlers">
       <component :is="component" v-bind="options.props" v-on="vueEventHandlers">
@@ -98,8 +98,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .trigger-button {
+<style lang="scss">
+  .vueshowroom-component-preview__trigger-button {
     background-color: white;
     border: 1px solid #ccc;
     padding: 0.5rem;

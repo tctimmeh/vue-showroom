@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <div class="background-color-setting">
+  <div class="vueshowroom-settings-panel">
+    <div class="vueshowroom-settings-panel__background-color-setting">
       <strong>Background Color:</strong>
-      <input class="background-color-input" type="color" v-model="options.preview.backgroundColor">
-      <button class="background-clear-button" @click="clearBackgroundColor">Clear</button>
+      <input class="vueshowroom-settings-panel__background-color-input" type="color"
+             v-model="options.preview.backgroundColor">
+      <button class="vueshowroom-settings-panel__background-clear-button" @click="clearBackgroundColor">Clear</button>
     </div>
   </div>
 </template>
@@ -26,8 +27,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .background-color-input {
+<style lang="scss">
+  .vueshowroom-settings-panel__background-color-input {
     display: inline-block;
     background-color: white;
     width: 1.5rem;
@@ -38,7 +39,7 @@ export default {
     margin-left: 0.5rem;
   }
 
-  .background-clear-button {
+  .vueshowroom-settings-panel__background-clear-button {
     height: 1.5rem;
     display: inline-block;
     background-color: white;

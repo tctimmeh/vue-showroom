@@ -1,10 +1,10 @@
 <template>
-  <div class="showroom-main">
-    <component-menu class="component-menu" :components="components" :selected-component="component"
+  <div class="vueshowroom-main">
+    <component-menu class="vueshowroom__component-menu" :components="components" :selected-component="component"
                     @select="selectComponent"
     />
 
-    <component-editor class="component-editor" :component="component" :example="example" />
+    <component-editor class="vueshowroom__component-editor" :component="component" :example="example" />
   </div>
 </template>
 
@@ -76,17 +76,17 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .showroom-main {
+<style lang="scss">
+  .vueshowroom-main {
     display: flex;
   }
 
-  .component-menu {
+  .vueshowroom__component-menu {
     padding: 1rem;
     box-shadow: 0 0 8px 0 #777;
   }
 
-  .component-editor {
+  .vueshowroom__component-editor {
     flex-grow: 1;
   }
 </style>

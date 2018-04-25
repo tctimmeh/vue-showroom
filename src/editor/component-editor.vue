@@ -1,7 +1,8 @@
 <template>
-  <div class="component-editor">
-    <component-preview class="preview" :component="component" :options="options" @eventTriggered="captureEvent"/>
-    <component-panels class="panels" :options="options" :events="events"/>
+  <div class="vueshowroom-component-editor">
+    <component-preview class="vueshowroom-component-editor__preview" :component="component" :options="options"
+                       @eventTriggered="captureEvent"/>
+    <component-panels class="vueshowroom-component-editor__panels" :options="options" :events="events"/>
   </div>
 </template>
 
@@ -83,21 +84,18 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .component-editor {
+<style lang="scss">
+  .vueshowroom-component-editor {
     display: flex;
     flex-direction: column;
   }
 
-  .preview {
+  .vueshowroom-component-editor__preview {
     padding: 1rem;
-  }
-
-  .preview {
     flex-grow: 1;
   }
 
-  .panels {
+  .vueshowroom-component-editor__panels {
     border-top: 1px solid #ccc;
   }
 </style>

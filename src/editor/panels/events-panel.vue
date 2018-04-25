@@ -1,17 +1,19 @@
 <template>
-  <div class="event-log">
-    <ul class="event-list">
-      <li v-for="(event, index) in reversedEvents" :key="index" class="event-description">
-        <button class="inspect-button" title="Inspect in console" @click="inspect(event)">&#x1f441;</button>
+  <div class="vueshowroom-event-log">
+    <ul class="vueshowroom-event-log__event-list">
+      <li v-for="(event, index) in reversedEvents" :key="index" class="vueshowroom-event-log__event-description">
+        <button class="vueshowroom-event-log__inspect-button" title="Inspect in console" @click="inspect(event)">
+          &#x1f441;
+        </button>
 
-        <span class="event-time">{{ formatDate(event.time) }}</span>
+        <span class="vueshowroom-event-log__event-time">{{ formatDate(event.time) }}</span>
         -
-        <span class="event-name">{{ event.name }}</span>
+        <span class="vueshowroom-event-log__event-name">{{ event.name }}</span>
 
-        <span v-if="event.data" class="event-data">
+        <span v-if="event.data" class="vueshowroom-event-log__event-data">
           -
-          <span class="event-data-class">{{ className(event.data) }}</span>
-          <span class="event-data-data">{{ event.data }}</span>
+          <span class="vueshowroom-event-log__event-data-class">{{ className(event.data) }}</span>
+          <span class="vueshowroom-event-log__event-data-data">{{ event.data }}</span>
         </span>
       </li>
     </ul>
@@ -58,12 +60,12 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .event-list {
+<style lang="scss">
+  .vueshowroom-event-log__event-list {
     list-style: none;
   }
 
-  .event-description {
+  .vueshowroom-event-log__event-description {
     padding: 0.5rem;
     white-space: nowrap;
     overflow: hidden;
@@ -74,7 +76,7 @@ export default {
     }
   }
 
-  .inspect-button {
+  .vueshowroom-event-log__inspect-button {
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 0.25rem;
@@ -88,11 +90,11 @@ export default {
     }
   }
 
-  .event-name {
+  .vueshowroom-event-log__event-name {
     font-weight: bold;
   }
 
-  .event-data-class {
+  .vueshowroom-event-log__event-data-class {
     margin-right: 0.5rem;
   }
 </style>

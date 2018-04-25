@@ -1,13 +1,15 @@
 <template>
-  <div class="menu-category">
-    <div class="category-title">{{ category.name }}</div>
+  <div class="vueshowroom-menu-category">
+    <div class="vueshowroom-menu-category__category-title">{{ category.name }}</div>
 
-    <menu-category class="subcategory" v-for="(subCategory, subCategoryName) in category.categories"
+    <menu-category class="vueshowroom-menu-category__subcategory"
+                   v-for="(subCategory, subCategoryName) in category.categories"
                    :name="subCategoryName" :category="subCategory" :key="subCategoryName" :depth="depth + 1"
                    :selected-component="selectedComponent" :style="inlineStyle" @select="select"
     />
 
-    <div class="component-link" :class="{selected: component === selectedComponent}"
+    <div class="vueshowroom-menu-category__component-link"
+         :class="{'vueshowroom-menu-category__component-link--selected': component === selectedComponent}"
          v-for="component in category.components" :key="component.name" :style="inlineStyle" @click="select(component)"
     >
       {{ component.name }}
@@ -49,8 +51,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .category-title {
+<style lang="scss">
+  .vueshowroom-menu-category__category-title {
     color: #aaa;
     font-size: 0.9rem;
     margin: 0.5rem 0;
@@ -58,7 +60,7 @@ export default {
     pointer-events: none;
   }
 
-  .component-link {
+  .vueshowroom-menu-category__component-link {
     color: #333;
     cursor: pointer;
     padding: 0.5rem;
@@ -68,7 +70,7 @@ export default {
       background-color: #eee;
     }
 
-    &.selected {
+    &.vueshowroom-menu-category__component-link--selected {
       background-color: #8bd;
       color: white;
     }

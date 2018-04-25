@@ -1,5 +1,5 @@
 <template>
-  <div class="component-menu">
+  <div class="vueshowroom-component-menu">
     <menu-category class="menu-category" v-for="category in categories" :key="category.name"
                    :category="category" @select="select" :selected-component="selectedComponent"
     />
@@ -61,8 +61,8 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-  .component-menu {
+<style lang="scss">
+  .vueshowroom-component-menu {
     background-color: white;
     overflow-y: auto;
     min-width: 18rem;
